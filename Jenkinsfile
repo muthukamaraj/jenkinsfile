@@ -22,12 +22,6 @@ node {
    sh "mvn package"
    sh "mvn versions:set -DnewVersion=${env.BUILD_NUMBER}"
 
-   stage 'test'
-   parallel 'test': {
-     sh "mvn test; sleep 2;"
-   }, 'verify': {
-     sh "mvn verify; sleep 3"
-   }
 
    stage 'archive'
    archive 'target/*.jar'
